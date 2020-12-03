@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pact-broker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pact-broker
+  template:
+    metadata:
+      labels:
+        app: pact-broker
+    spec:
+      containers:
+      - image: pactfoundation/pact-broker:2
+        imagePullPolicy: Always
+        securityContext:
+          runAsNonRoot: True
+          runAsUser: 100
+        name: app
+        readinessProbe:
+          tcpSocket:
+            port: 9292
+        ports:
+        - containerPort: 9292
+          name: http
+        env:
+        - name: PACT_BROKER_PORT
+          value: "9292"
+        - name: PACT_BROKER_DATABASE_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: database
+              key: username
+        - name: PACT_BROKER_DATABASE_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: database
+              key: password
+        - name: PACT_BROKER_DATABASE_HOST
+          valueFrom:
+            secretKeyRef:
+              name: database
+              key: host
+        - name: PACT_BROKER_DATABASE_NAME
+          valueFrom:
+            secretKeyRef:
+              name: database
+              key: name
