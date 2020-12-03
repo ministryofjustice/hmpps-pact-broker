@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: pact-broker
+  namespace: pact-broker-prod
+spec:
+  tls:
+  - hosts:
+    - pact-broker-prod.apps.live-1.cloud-platform.service.justice.gov.uk
+  rules:
+  - host: pact-broker-prod.apps.live-1.cloud-platform.service.justice.gov.uk
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: pact-broker
+          servicePort: 80
