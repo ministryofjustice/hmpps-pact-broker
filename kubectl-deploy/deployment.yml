@@ -28,6 +28,8 @@ spec:
         env:
         - name: PACT_BROKER_PORT
           value: "9292"
+        - name: PACT_BROKER_ALLOW_PUBLIC_READ
+          value: "true"
         - name: PACT_BROKER_DATABASE_USERNAME
           valueFrom:
             secretKeyRef:
@@ -48,3 +50,13 @@ spec:
             secretKeyRef:
               name: database
               key: name
+        - name: PACT_BROKER_BASIC_AUTH_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: basic-auth
+              key: username
+        - name: PACT_BROKER_BASIC_AUTH_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: basic-auth
+              key: password
