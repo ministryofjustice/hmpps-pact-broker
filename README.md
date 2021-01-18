@@ -13,3 +13,24 @@ used by the interventions team in HMPPS.
 ```
 ./deploy.sh
 ```
+
+## Create webhooks
+
+Webhooks can trigger builds when contract changes are pushed by consumers.
+
+To populate,
+
+```
+cd seed
+CIRCLE_TOKEN=token PACT_BROKER_USERNAME=username PACT_BROKER_PASSWORD=password ./create_webhooks.sh
+```
+
+- `CIRCLE_TOKEN` to be used by webhooks to CircleCI, used by the CircleCI v2 API. Please generate one.
+- `PACT_BROKER_USERNAME` and `PACT_BROKER_PASSWORD` are the basic auth username/password. Please see the Kubernetes secrets.
+
+:rotating_light: The tokens are redacted in the output and the Pact broker UI.
+However, they are visible in the database.
+
+## Secrets
+
+All variables are saved in the Kubernetes secrets under the namespace `pact-broker-prod`.
