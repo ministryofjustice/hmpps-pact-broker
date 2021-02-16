@@ -3,6 +3,9 @@
 This repository contains the deployment script for the [Pact broker](https://docs.pact.io/pact_broker)
 used by the interventions team in HMPPS.
 
+It deploys the [`pactfoundation/pact-broker`](https://hub.docker.com/r/pactfoundation/pact-broker) image,
+see [`kubectl-deploy/deployment.yml`](kubectl-deploy/deployment.yml) for details.
+
 ## Pre-requisites
 
 - [Access to Cloud Platform](https://user-guide.cloud-platform.service.justice.gov.uk/documentation/getting-started/kubectl-config.html#authentication)
