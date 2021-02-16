@@ -13,6 +13,8 @@ see [`kubectl-deploy/deployment.yml`](kubectl-deploy/deployment.yml) for details
 
 ## Deploy
 
+:rotating_light: Deployment is **manual**; after changes get merged, you must execute:
+
 ```
 ./deploy.sh
 ```
