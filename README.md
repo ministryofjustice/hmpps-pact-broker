@@ -10,6 +10,7 @@ see [`kubectl-deploy/deployment.yml`](kubectl-deploy/deployment.yml) for details
 
 - [Access to Cloud Platform](https://user-guide.cloud-platform.service.justice.gov.uk/documentation/getting-started/kubectl-config.html#authentication)
 - Access to the [`pact-broker-prod`](https://github.com/ministryofjustice/cloud-platform-environments/tree/8eef196708c5fd07c3fe1ba1fe2f95dbcefcb567/namespaces/live-1.cloud-platform.service.justice.gov.uk/pact-broker-prod) namespace
+  (through the [`pact-broker-maintainers`](https://github.com/orgs/ministryofjustice/teams/pact-broker-maintainers) GitHub team)
 
 ## Deploy
 
