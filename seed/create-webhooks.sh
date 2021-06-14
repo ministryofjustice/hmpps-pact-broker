@@ -1,6 +1,6 @@
 #!/bin/sh -e
 
-if [ "x$CIRCLE_TOKEN" = "x" ] || [ "x$PACT_BROKER_USERNAME" = "x" ] || [ "x$PACT_BROKER_PASSWORD" = "x" ]; then
+if [ "$CIRCLE_TOKEN" = "" ] || [ "$PACT_BROKER_USERNAME" = "" ] || [ "$PACT_BROKER_PASSWORD" = "" ]; then
   echo "One or more environment variables are missing. Usage:"
   echo "CIRCLE_TOKEN=token PACT_BROKER_USERNAME=user PACT_BROKER_PASSWORD=password $0"
   exit 1
