@@ -6,9 +6,19 @@ if [ "$CIRCLE_TOKEN" = "" ] || [ "$GITHUB_ACCESS_TOKEN" = "" ] || [ "$PACT_BROKE
   exit 1
 fi
 
+# these ".../webhooks/ID" IDs are randomly chosen -- they will be either "created or updated" so pick any new webhooks
+# for pedantics: Pact generates these via `SecureRandom.urlsafe_base64`: https://ruby-doc.org/stdlib-3.0.1/libdoc/securerandom/rdoc/Random/Formatter.html#method-i-urlsafe_base64
+
 sed "s/\${CIRCLE_TOKEN}/$CIRCLE_TOKEN/; s/\${GITHUB_ACCESS_TOKEN}/$GITHUB_ACCESS_TOKEN/" webhook-interventions-service.json |
   curl -X PUT \
     "https://pact-broker-prod.apps.live-1.cloud-platform.service.justice.gov.uk/webhooks/4wniGo-GXnLTM6Qx1YqlmQ" \
+    --user "$PACT_BROKER_USERNAME:$PACT_BROKER_PASSWORD" \
+    -H "Content-Type: application/json" \
+    -d @-
+
+sed "s/\${CIRCLE_TOKEN}/$CIRCLE_TOKEN/; s/\${GITHUB_ACCESS_TOKEN}/$GITHUB_ACCESS_TOKEN/" webhook-interventions-ui-feedback.json |
+  curl -X PUT \
+    "https://pact-broker-prod.apps.live-1.cloud-platform.service.justice.gov.uk/webhooks/3XLeJJv8Lh4yiTk0nBDMoQ" \
     --user "$PACT_BROKER_USERNAME:$PACT_BROKER_PASSWORD" \
     -H "Content-Type: application/json" \
     -d @-
