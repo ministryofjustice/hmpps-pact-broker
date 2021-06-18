@@ -28,10 +28,11 @@ To populate,
 
 ```
 cd seed
-CIRCLE_TOKEN=token PACT_BROKER_USERNAME=username PACT_BROKER_PASSWORD=password ./create_webhooks.sh
+CIRCLE_TOKEN=token GITHUB_ACCESS_TOKEN=token PACT_BROKER_USERNAME=username PACT_BROKER_PASSWORD=password ./create_webhooks.sh
 ```
 
 - `CIRCLE_TOKEN` to be used by webhooks to CircleCI, used by the CircleCI v2 API. Please generate one.
+- `GITHUB_ACCESS_TOKEN` to be used by Pact to signal the verification result as a GitHub status. Needs a [personal access token][pat], and [authorised SAML][saml].
 - `PACT_BROKER_USERNAME` and `PACT_BROKER_PASSWORD` are the basic auth username/password. Please see the Kubernetes secrets.
 
 :rotating_light: The tokens are redacted in the output and the Pact broker UI.
@@ -40,3 +41,6 @@ However, they are visible in the database.
 ## Secrets
 
 All variables are saved in the Kubernetes secrets under the namespace `pact-broker-prod`.
+
+[pat]: https://docs.github.com/en/github/authenticating-to-github/keeping-your-account-and-data-secure/creating-a-personal-access-token
+[saml]: https://docs.github.com/en/github/authenticating-to-github/authenticating-with-saml-single-sign-on/authorizing-a-personal-access-token-for-use-with-saml-single-sign-on
