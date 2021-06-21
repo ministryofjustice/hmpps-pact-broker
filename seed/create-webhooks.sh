@@ -21,3 +21,5 @@ function upsert_webhook() {
 # for pedantics: Pact generates these via `SecureRandom.urlsafe_base64`: https://ruby-doc.org/stdlib-3.0.1/libdoc/securerandom/rdoc/Random/Formatter.html#method-i-urlsafe_base64
 upsert_webhook "webhook-interventions-service.json" "4wniGo-GXnLTM6Qx1YqlmQ"
 upsert_webhook "webhook-interventions-ui-feedback.json" "3XLeJJv8Lh4yiTk0nBDMoQ"
+upsert_webhook "webhook-court-case-service.json" "357828ada55a4ba1bf4f3bd846ed4d96"
+upsert_webhook "webhook-prepare-a-case-feedback.json" "90a734c0f0654594a76c7472e0f3646a"
