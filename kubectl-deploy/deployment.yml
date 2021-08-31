@@ -13,7 +13,7 @@ spec:
         app: pact-broker
     spec:
       containers:
-      - image: pactfoundation/pact-broker:2
+      - image: pactfoundation/pact-broker:2.81.0.1
         imagePullPolicy: Always
         securityContext:
           runAsNonRoot: True
