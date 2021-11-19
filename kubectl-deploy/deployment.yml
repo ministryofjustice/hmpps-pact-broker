@@ -17,7 +17,7 @@ spec:
         imagePullPolicy: Always
         securityContext:
           runAsNonRoot: True
-          runAsUser: 100
+          runAsUser: 101
         name: app
         readinessProbe:
           tcpSocket:
