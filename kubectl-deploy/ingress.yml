@@ -4,7 +4,7 @@ metadata:
   name: pact-broker
   namespace: pact-broker-prod
   annotations:
-    external-dns.alpha.kubernetes.io/set-identifier: "pact-broker-pact-broker-prod-blue"
+    external-dns.alpha.kubernetes.io/set-identifier: "pact-broker-pact-broker-prod-green"
     external-dns.alpha.kubernetes.io/aws-weight: "100"
 spec:
   tls:
