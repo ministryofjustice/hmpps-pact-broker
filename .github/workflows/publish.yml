@@ -23,3 +23,17 @@ jobs:
           kubectl config use-context ${KUBE_CLUSTER}
       - name: Deploy
         run: ./deploy.sh
+  apply_webhooks:
+    if: ${{ github.ref == 'refs/heads/main' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Apply webhooks
+        env:
+          CIRCLE_TOKEN: ${{ secrets.CIRCLE_TOKEN }}
+          GITHUB_ACCESS_TOKEN: ${{ secrets.GH_ACCESS_TOKEN }}
+          PACT_BROKER_USERNAME: ${{ secrets.PACT_BROKER_USERNAME }}
+          PACT_BROKER_PASSWORD: ${{ secrets.PACT_BROKER_PASSWORD }}
+        run: ./create-webhooks.sh
+        working-directory: ./seed

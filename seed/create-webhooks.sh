@@ -9,12 +9,15 @@ fi
 function upsert_webhook() {
   local file="$1"
   local webhookID="$2"
+  echo "✨ applying $file..."
   sed "s/\${CIRCLE_TOKEN}/$CIRCLE_TOKEN/; s/\${GITHUB_ACCESS_TOKEN}/$GITHUB_ACCESS_TOKEN/" "$file" |
     curl -X PUT \
       "https://pact-broker-prod.apps.live-1.cloud-platform.service.justice.gov.uk/webhooks/$webhookID" \
       --user "$PACT_BROKER_USERNAME:$PACT_BROKER_PASSWORD" \
       -H "Content-Type: application/json" \
       -d @-
+  echo
+  echo
 }
 
 # these ".../webhooks/ID" IDs are randomly chosen -- they will be either "created or updated" so pick anything for new webhooks
