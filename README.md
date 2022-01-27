@@ -1,3 +1,5 @@
+[![Deploy](https://github.com/ministryofjustice/hmpps-pact-broker/actions/workflows/publish.yml/badge.svg)](https://github.com/ministryofjustice/hmpps-pact-broker/actions/workflows/publish.yml)
+
 # hmpps-pact-broker
 
 This repository contains the deployment script for the [Pact broker](https://docs.pact.io/pact_broker)
@@ -14,29 +16,27 @@ see [`kubectl-deploy/deployment.yml`](kubectl-deploy/deployment.yml) for details
 
 ## Deploy
 
-:rotating_light: Deployment is **manual**; after changes get merged, you must execute:
-
-```
-./deploy.sh
-```
+Each `main` commit deploys the application via [`./deploy.sh`](./deploy.sh)
 
 ## Create webhooks
 
-Webhooks can trigger builds when contract changes are pushed by consumers.
+All webhooks are in the [`seed`](./seed) directory and are all automatically deployed
+during `main` build via [`seed/create-webhooks.sh`](./seed/create-webhooks.sh)
 
-To populate,
+### When to use webhooks
 
-```
-cd seed
-CIRCLE_TOKEN=token GITHUB_ACCESS_TOKEN=token PACT_BROKER_USERNAME=username PACT_BROKER_PASSWORD=password ./create_webhooks.sh
-```
+Webhooks can trigger builds when
+
+- contract changes are pushed by consumers (to trigger a build: [example](seed/webhook-interventions-service.json))
+- when the build result is back (to communicate the status to github PR/commit status: [example](seed/webhook-interventions-ui-feedback.json))
+
+### Webhook configuration
+
+All found [under repository secrets](https://github.com/ministryofjustice/hmpps-pact-broker/settings/secrets/actions):
 
 - `CIRCLE_TOKEN` to be used by webhooks to CircleCI, used by the CircleCI v2 API. Please generate one.
-- `GITHUB_ACCESS_TOKEN` to be used by Pact to signal the verification result as a GitHub status. Needs a [personal access token][pat], and [authorised SAML][saml].
+- `GH_ACCESS_TOKEN` to be used by Pact to signal the verification result as a GitHub status. Needs a [personal access token][pat], and [authorised SAML][saml].
 - `PACT_BROKER_USERNAME` and `PACT_BROKER_PASSWORD` are the basic auth username/password. Please see the Kubernetes secrets.
-
-:rotating_light: The tokens are redacted in the output and the Pact broker UI.
-However, they are visible in the database.
 
 ## Secrets
 
