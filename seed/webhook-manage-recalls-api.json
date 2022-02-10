@@ -1,0 +1,26 @@
+{
+  "description": "Trigger manage-recalls-api pact",
+  "provider": {
+    "name": "manage-recalls-api"
+  },
+  "events": [
+    {
+      "name": "contract_content_changed"
+    }
+  ],
+  "request": {
+    "method": "POST",
+    "url": "https://circleci.com/api/v2/project/github/ministryofjustice/manage-recalls-api/pipeline",
+    "headers": {
+      "Content-Type": "application/json",
+      "Circle-Token": "${CIRCLE_TOKEN}"
+    },
+    "body": {
+      "branch": "main",
+      "parameters": {
+        "only_run_pact_workflow": true,
+        "pact_consumer_tags": "${pactbroker.consumerVersionTags}"
+      }
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "consumer": {
+    "name": "manage-recalls-ui"
+  },
+  "events": [
+    {
+      "name": "contract_published"
+    },
+    {
+      "name": "provider_verification_published"
+    }
+  ],
+  "request": {
+    "method": "POST",
+    "url": "https://api.github.com/repos/ministryofjustice/manage-recalls-ui/statuses/${pactbroker.consumerVersionNumber}",
+    "headers": {
+      "Content-Type": "application/json",
+      "Authorization": "token ${GITHUB_ACCESS_TOKEN}"
+    },
+    "body": {
+      "state": "${pactbroker.githubVerificationStatus}",
+      "description": "Pact Verification Tests ${pactbroker.providerVersionTags}",
+      "context": "pact/provider/${pactbroker.providerName}",
+      "target_url": "${pactbroker.verificationResultUrl}"
+    }
+  }
+}
