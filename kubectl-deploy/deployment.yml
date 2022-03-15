@@ -60,3 +60,7 @@ spec:
             secretKeyRef:
               name: basic-auth
               key: password
+        - name: PACT_BROKER_WEBHOOK_SCHEME_WHITELIST
+          value: https
+        - name: PACT_BROKER_WEBHOOK_HOST_WHITELIST
+          value: "api.github.com, github.com, circleci.com"
