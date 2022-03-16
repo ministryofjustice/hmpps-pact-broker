@@ -31,10 +31,12 @@ function delete_webhook() {
 }
 
 # Temporarily remove the "manage-recalls" webhooks to clear old state etc
-delete_webhook "6FuVcYEPZt51S0rd1G8jRw"
-delete_webhook "AQv2iulu8UgXL552jeBC6Q"
-delete_webhook "i9om80bypXmFp8e-6va5_w"
-delete_webhook "Vg9ZCPsaxFobvObDesfTTQ"
+# delete_webhook "6FuVcYEPZt51S0rd1G8jRw"
+# delete_webhook "AQv2iulu8UgXL552jeBC6Q"
+# delete_webhook "i9om80bypXmFp8e-6va5_w"
+# delete_webhook "Vg9ZCPsaxFobvObDesfTTQ"
+delete_webhook "sasW97NNWwHB8uA2U-WTPw"
+delete_webhook "5AsUPMwuSyoP6xCvzomw2g"
 
 # these ".../webhooks/ID" IDs are randomly chosen -- they will be either "created or updated" so pick anything for new webhooks
 # for pedantics: Pact generates these via `SecureRandom.urlsafe_base64`: https://ruby-doc.org/stdlib-3.0.1/libdoc/securerandom/rdoc/Random/Formatter.html#method-i-urlsafe_base64
