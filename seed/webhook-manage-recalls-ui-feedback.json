@@ -4,7 +4,7 @@
   },
   "events": [
     {
-      "name": "contract_published"
+      "name": "contract_requiring_verification_published"
     },
     {
       "name": "provider_verification_published"

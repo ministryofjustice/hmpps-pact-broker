@@ -5,7 +5,7 @@
   },
   "events": [
     {
-      "name": "contract_content_changed"
+      "name": "contract_requiring_verification_published"
     }
   ],
   "request": {
