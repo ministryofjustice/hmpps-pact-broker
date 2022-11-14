@@ -17,5 +17,7 @@ spec:
       paths:
       - path: /
         backend:
-          serviceName: pact-broker
-          servicePort: 80
+          service:
+            name: pact-broker
+            port:
+              number: 80
