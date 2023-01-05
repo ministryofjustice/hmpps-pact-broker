@@ -33,7 +33,7 @@ Webhooks can trigger builds when
 ### Webhook configuration
 
 - `PACT_BROKER_CIRCLECI_INTEGRATION_TOKEN` to trigger workflows with webhooks in CircleCI, used by the CircleCI v2 API. Please generate one.
-- `GH_ACCESS_TOKEN` to set the verification result as a GitHub build status on a commit. It needs a personal access token][pat] with `repo:status` permission and [authorised SAML][saml].
+- `GH_ACCESS_TOKEN` to set the verification result as a GitHub build status on a commit. It needs a [personal access token][pat] with `repo:status` permission and [authorised SAML][saml].
 - `PACT_BROKER_USERNAME` and `PACT_BROKER_PASSWORD` are the basic auth username/password.
 
 ## Secrets
