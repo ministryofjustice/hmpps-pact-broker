@@ -44,7 +44,7 @@ Webhooks can trigger builds when
 | `GH_ACCESS_TOKEN` | ✅ [yes][gh-secrets] | no | no | [Generate][pat] a new GitHub [PAT][setting-pat] with `repo:status` permission. Please "**Configure SSO**" on the token. |
 | `PACT_BROKER_PASSWORD` | ✅ [yes][gh-secrets] | ✅ yes, [hmpps-common-vars] | ✅ yes, `secret/basic-auth` | Create a new random password, update the Kubernetes secret, the CircleCI context and the GitHub action secret. |
 
-`PACT_BROKER_USERNAME` is in the same place as `PACT_BROKER_PASSWORD``, but it is not a secret.
+`PACT_BROKER_USERNAME` is in the same place as `PACT_BROKER_PASSWORD`, but it is not a secret.
 
 
 [pat]: https://docs.github.com/en/github/authenticating-to-github/keeping-your-account-and-data-secure/creating-a-personal-access-token
