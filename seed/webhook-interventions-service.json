@@ -13,7 +13,7 @@
     "url": "https://circleci.com/api/v2/project/github/ministryofjustice/hmpps-interventions-service/pipeline",
     "headers": {
       "Content-Type": "application/json",
-      "Circle-Token": "${CIRCLE_TOKEN}"
+      "Circle-Token": "${PACT_BROKER_CIRCLECI_INTEGRATION_TOKEN}"
     },
     "body": {
       "branch": "main",

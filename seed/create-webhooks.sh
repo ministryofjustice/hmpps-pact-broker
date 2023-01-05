@@ -1,8 +1,8 @@
 #!/bin/bash -e
 
-if [ "$CIRCLE_TOKEN" = "" ] || [ "$GITHUB_ACCESS_TOKEN" = "" ] || [ "$PACT_BROKER_USERNAME" = "" ] || [ "$PACT_BROKER_PASSWORD" = "" ]; then
+if [ "$PACT_BROKER_CIRCLECI_INTEGRATION_TOKEN" = "" ] || [ "$GITHUB_ACCESS_TOKEN" = "" ] || [ "$PACT_BROKER_USERNAME" = "" ] || [ "$PACT_BROKER_PASSWORD" = "" ]; then
   echo "One or more environment variables are missing. Usage:"
-  echo "CIRCLE_TOKEN=token GITHUB_ACCESS_TOKEN=token PACT_BROKER_USERNAME=user PACT_BROKER_PASSWORD=password $0"
+  echo "PACT_BROKER_CIRCLECI_INTEGRATION_TOKEN=token GITHUB_ACCESS_TOKEN=token PACT_BROKER_USERNAME=user PACT_BROKER_PASSWORD=password $0"
   exit 1
 fi
 
@@ -10,7 +10,7 @@ function upsert_webhook() {
   local file="$1"
   local webhookID="$2"
   echo "✨ applying $file..."
-  sed "s/\${CIRCLE_TOKEN}/$CIRCLE_TOKEN/; s/\${GITHUB_ACCESS_TOKEN}/$GITHUB_ACCESS_TOKEN/" "$file" |
+  sed "s/\${PACT_BROKER_CIRCLECI_INTEGRATION_TOKEN}/$PACT_BROKER_CIRCLECI_INTEGRATION_TOKEN/; s/\${GITHUB_ACCESS_TOKEN}/$GITHUB_ACCESS_TOKEN/" "$file" |
     curl -X PUT \
       "https://pact-broker-prod.apps.live-1.cloud-platform.service.justice.gov.uk/webhooks/$webhookID" \
       --user "$PACT_BROKER_USERNAME:$PACT_BROKER_PASSWORD" \

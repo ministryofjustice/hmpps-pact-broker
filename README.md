@@ -34,7 +34,7 @@ Webhooks can trigger builds when
 
 All found [under repository secrets](https://github.com/ministryofjustice/hmpps-pact-broker/settings/secrets/actions):
 
-- `CIRCLE_TOKEN` to be used by webhooks to CircleCI, used by the CircleCI v2 API. Please generate one.
+- `PACT_BROKER_CIRCLECI_INTEGRATION_TOKEN` to be used by webhooks to CircleCI, used by the CircleCI v2 API. Please generate one.
 - `GH_ACCESS_TOKEN` to be used by Pact to signal the verification result as a GitHub status. Needs a [personal access token][pat], and [authorised SAML][saml].
 - `PACT_BROKER_USERNAME` and `PACT_BROKER_PASSWORD` are the basic auth username/password. Please see the Kubernetes secrets.
 
