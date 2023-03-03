@@ -33,23 +33,23 @@ spec:
         - name: PACT_BROKER_DATABASE_USERNAME
           valueFrom:
             secretKeyRef:
-              name: database
-              key: username
+              name: postgres14
+              key: database_username
         - name: PACT_BROKER_DATABASE_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: database
-              key: password
+              name: postgres14
+              key: database_password
         - name: PACT_BROKER_DATABASE_HOST
           valueFrom:
             secretKeyRef:
-              name: database
-              key: host
+              name: postgres14
+              key: rds_instance_address
         - name: PACT_BROKER_DATABASE_NAME
           valueFrom:
             secretKeyRef:
-              name: database
-              key: name
+              name: postgres14
+              key: database_name
         - name: PACT_BROKER_BASIC_AUTH_USERNAME
           valueFrom:
             secretKeyRef:
