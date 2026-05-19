@@ -1,6 +1,10 @@
 name: Deploy
 
-on: [push]
+on: 
+  push:
+    branches:
+      - main
+  workflow_dispatch:
 
 jobs:
   deploy:
@@ -8,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v6
       - name: Authenticate to the cluster
         env:
           KUBE_CLUSTER: ${{ secrets.KUBE_CLUSTER }}
@@ -28,7 +32,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v6
       - name: Apply webhooks
         env:
           PACT_BROKER_CIRCLECI_INTEGRATION_TOKEN: ${{ secrets.PACT_BROKER_CIRCLECI_INTEGRATION_TOKEN }}
