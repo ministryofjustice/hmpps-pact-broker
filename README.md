@@ -53,3 +53,62 @@ Webhooks can trigger builds when
 [gh-secrets]: https://github.com/ministryofjustice/hmpps-pact-broker/settings/secrets/actions
 [circleci-pat]: https://app.circleci.com/settings/user/tokens
 [hmpps-common-vars]: https://app.circleci.com/settings/organization/github/ministryofjustice/contexts/39e77e3c-466c-460e-9030-159bb4f7c3c7
+
+## Database Upgrade
+Follow cloud platform [guide](https://user-guide.cloud-platform.service.justice.gov.uk/documentation/deploying-an-app/relational-databases/upgrade.html). Note this will result in downtime
+
+1. Update [terraform](https://github.com/ministryofjustice/cloud-platform-environments/blob/main/namespaces/live.cloud-platform.service.justice.gov.uk/pact-broker-prod/resources/rds-postgres14.tf) for rds db prepare_for_major_upgrade, rds_family, db_engine_version, allow_major_version_upgrade
+    ```terraform
+    ...
+      prepare_for_major_upgrade   = true
+      rds_family                  = "postgres15"
+      db_engine_version           = "15"
+
+      allow_major_version_upgrade = true
+      allow_minor_version_upgrade = true
+    ...
+    ```
+1. Raise PR in slack channel `#ask-cloud-platform`
+1. Mention downtime window in slack channel `#pact-broker`
+1. Merge > Triggers DB Upgrade (Downtime starts)
+
+### Troubleshooting DB
+Check Pact Broker logs: `kubectl logs -f --tail=500 <pod-name> -n <namespace>`
+
+1. Query timeout (QueryCanceled)
+    ```
+    2026-08-21 07:52:09.545660 I [8:puma srv tp 001] PactBroker::Matrix::Service -- Querying matrix -- {selectors: [{pacticipant_name: "Interventions UI", pacticipant_version_number: "1463ba3968de941f5095985f887e090fa4fd80cc"}, {pacticipant_name: "Interventions Service"}], options: {latestby: "cvpv", limit: "100", ignore_selectors: []}}
+
+    2026-08-21 07:53:07.483766 E [8:puma srv tp 001 logger.rb:158] Padrino -- Sequel::DatabaseError - PG::QueryCanceled: ERROR:  canceling statement due to statement timeout 
+    ```
+    1. Check connection details for database in [AWS](https://user-guide.cloud-platform.service.justice.gov.uk/documentation/getting-started/accessing-the-cloud-console.html)
+    1. Create `pg-tool` to run indexing command
+        ``` bash
+        kubectl run pg-tool -n <namespace> \    
+          --image=postgres:15-alpine \
+          --restart=Never \
+          --overrides='{
+            "spec": {
+              "securityContext": {
+                "runAsNonRoot": true,
+                "runAsUser": 70
+              },
+              "containers": [{
+                "name": "db-tool",
+                "image": "postgres:15-alpine",
+                "command": ["sleep", "3600"],
+                "resources": {
+                  "requests": {"memory": "500Mi", "cpu": "250m"},
+                  "limits": {"memory": "500Mi", "cpu": "500m"}
+                }
+              }]
+            }
+          }'
+        ```
+    1. Run `ANALYZE` query on `pg-tool` pod
+        ```
+        kubectl exec pg-tool -it -n <namespace> \
+        -- \                       
+        psql -h <db-host-name> -U <db-username> -d <db-name> -c "ANALYZE VERBOSE;"
+        ```
+    1. Restart Pact Broker `kubectl rollout restart deployment pact-broker -n <namespace>`
