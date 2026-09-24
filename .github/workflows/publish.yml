@@ -30,7 +30,7 @@ jobs:
   apply_webhooks:
     if: ${{ github.ref == 'refs/heads/main' }}
     needs: deploy
-    runs-on: ubuntu-latest
+    runs-on: [ self-hosted, hmpps-github-actions-runner ]
     steps:
       - name: Checkout code
         uses: actions/checkout@v6
