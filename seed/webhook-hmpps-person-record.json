@@ -1,0 +1,30 @@
+{
+  "description": "Trigger hmpps person record pact",
+  "provider": {
+    "name": "hmpps-person-record"
+  },
+  "events": [
+    {
+      "name": "contract_requiring_verification_published"
+    }
+  ],
+  "request": {
+    "method": "POST",
+    "url": "https://api.github.com/repos/ministryofjustice/hmpps-person-record/dispatches",
+    "headers": {
+      "Accept": "application/vnd.github+json",
+      "Content-Type": "application/json",
+      "Authorization": "Bearer ${hmpps-person-record_ACCESS_TOKEN}"
+    },
+    "body": {
+      "event_type": "pact_changed",
+      "client_payload": {
+        "consumerName": "${pactbroker.consumerName}",
+        "consumerBranch": "${pactbroker.consumerVersionBranch}",
+        "providerAppVersion": "${pactbroker.providerVersionNumber}",
+        "providerBranch": "${pactbroker.providerVersionBranch}",
+        "providerTag": "${pactbroker.providerVersionTags}"
+      }
+    }
+  }
+}
