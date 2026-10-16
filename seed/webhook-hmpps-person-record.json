@@ -14,7 +14,7 @@
     "headers": {
       "Accept": "application/vnd.github+json",
       "Content-Type": "application/json",
-      "Authorization": "${hmpps-person-record_ACCESS_TOKEN}"
+      "Authorization": "Bearer ${hmpps-person-record_ACCESS_TOKEN}"
     },
     "body": {
       "event_type": "pact_changed",
