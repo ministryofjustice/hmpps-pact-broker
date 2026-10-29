@@ -1,5 +1,7 @@
 [![Deploy](https://github.com/ministryofjustice/hmpps-pact-broker/actions/workflows/publish.yml/badge.svg)](https://github.com/ministryofjustice/hmpps-pact-broker/actions/workflows/publish.yml)
 
+[![MOJ Repository Compliance Badge](https://github-community.service.justice.gov.uk/repository-standards/api/hmpps-pact-broker/badge)](https://github-community.service.justice.gov.uk/repository-standards/technical-standard/repositories/hmpps-pact-broker)
+
 # hmpps-pact-broker
 
 This repository contains the deployment script for the [Pact broker](https://docs.pact.io/pact_broker)
@@ -41,7 +43,7 @@ Webhooks can trigger builds when
 | Secret | In GitHub | In CircleCI | In Kubernetes | How to refresh |
 | --- | --- | --- | --- | --- |
 | `PACT_BROKER_CIRCLECI_INTEGRATION_TOKEN` | ✅ [yes][gh-secrets] | no | no | Generate a [new CircleCI Personal API Token](https://app.circleci.com/settings/user/tokens) |
-| `GH_ACCESS_TOKEN` | ✅ [yes][gh-secrets] | no | no | [Generate][pat] a new GitHub [PAT][setting-pat] with `repo:status` permission. Please "**Configure SSO**" on the token. |
+| `<PROVIDER_NAME>_ACCESS_TOKEN` | ✅ [yes][gh-secrets] | no | no | See github app webhook [guidance](./GITHUB_WEBHOOKS.md) |
 | `PACT_BROKER_PASSWORD` | ✅ [yes][gh-secrets] | ✅ yes, [hmpps-common-vars] | ✅ yes, `secret/basic-auth` | Create a new random password, update the Kubernetes secret, the CircleCI context and the GitHub action secret. |
 
 `PACT_BROKER_USERNAME` is in the same place as `PACT_BROKER_PASSWORD`, but it is not a secret.
