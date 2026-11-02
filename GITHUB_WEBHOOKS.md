@@ -5,6 +5,7 @@ Github tokens are now generated via github [app](https://github.com/organization
 
 ## Pre-requisites
 - Repo has been installed the Github [app](https://github.com/organizations/ministryofjustice/settings/apps/hmpps-probation-test-trigger) via request in Slack #ask-developer-experience
+- Repo added to octo chainguard e.g. [chainguard](./.github/chainguard/moj-hmpps-community-support-api.sts.yaml)
 
 ## Consumer Workflow
 Consumer refreshes the provider token before they publish a new consumer contract. Allowing the Pact Broker to trigger the provider github actions workflow via the webhook stored in this repo e.g. [hmpps-person-record](./seed/webhook-hmpps-person-record.json)

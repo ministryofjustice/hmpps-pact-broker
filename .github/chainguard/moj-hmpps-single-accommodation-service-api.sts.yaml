@@ -1,5 +1,5 @@
 issuer: https://token.actions.githubusercontent.com
-subject_pattern: '^repo:ministryofjustice/[^:]+:ref:refs/heads/.*$'
+subject_pattern: repo:ministryofjustice/hmpps-single-accommodation-service-api:.*
 
 permissions:
   contents: read
