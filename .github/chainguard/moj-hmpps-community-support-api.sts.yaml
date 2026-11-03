@@ -1,5 +1,0 @@
-issuer: https://token.actions.githubusercontent.com
-subject_pattern: repo:ministryofjustice/hmpps-community-support-api:.*
-
-permissions:
-  contents: read
