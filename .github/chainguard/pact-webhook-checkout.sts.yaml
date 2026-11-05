@@ -1,5 +1,5 @@
 issuer: https://token.actions.githubusercontent.com
-subject_pattern: "repo:ministryofjustice/(hmpps-single-accommodation-service-api|hmpps-person-record|hmpps-community-support-api|hmpps-court-data-ingestion-api):.*"
+subject_pattern: "repo:ministryofjustice/(hmpps-single-accommodation-service-api|hmpps-person-record|hmpps-community-support-api|hmpps-court-data-ingestion-api|hmpps-arns-assessment-platform-ui|hmpps-assess-risks-and-needs):.*"
 
 permissions:
   contents: read
