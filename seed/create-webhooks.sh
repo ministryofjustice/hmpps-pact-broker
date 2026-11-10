@@ -41,3 +41,4 @@ upsert_webhook "webhook-prepare-a-case-feedback.json" "90a734c0f0654594a76c7472e
 upsert_webhook "webhook-court-case-matcher-feedback.json" "NTAxYmVhOTAtYjc5Ny00N2VlLTg1Y2YtYmZlZDQ0MDc0MGQz"
 upsert_webhook "webhook-hmpps-person-record.json" "ctNyAoj2Rx6pJYuJSpYChw"
 upsert_webhook "webhook-hmpps-person-record-events.json" "tJsy92jJfy4DjrusFSs73a"
+upsert_webhook "webhook-hmpps-court-data-ingestion-api.json" "sjUT3482HifTYaQMNhu896"
